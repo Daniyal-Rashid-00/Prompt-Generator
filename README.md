@@ -1,128 +1,93 @@
-# AI Prompt Generator & Optimizer
+# AI Prompt Generator and Optimizer
 
-A modern, dark-themed web application for generating and optimizing AI prompts using OpenRouter API. Transform your ideas into professional, high-quality prompts for ChatGPT, Claude, and other AI models.
+## Overview
 
-## ✨ Features
+This web application serves as an intelligent intermediary between users and large language models. It takes rough ideas or simple descriptions and transforms them into highly effective, professionally structured prompts that maximize the quality and accuracy of AI model outputs.
 
-- **Two Generation Modes**:
-  - **Fast Mode**: Concise, professional prompts (<500 characters)
-  - **Advanced Mode**: Structured, detailed prompts with bullet points (500-1000 characters)
-- **Beautiful Dark UI**: Modern glassmorphism design with smooth animations
-- **Copy to Clipboard**: One-click copying of generated prompts
-- **Keyboard Shortcuts**: Press `Ctrl+Enter` to generate
-- **Responsive Design**: Works seamlessly on desktop and mobile
+The core problem this solves is the prompt engineering barrier. Most users struggle to articulate their needs in a way that elicits optimal responses from AI models. This tool automates the prompt engineering process, applying best practices to convert casual input into expert-level prompts.
 
-## 🚀 Getting Started
+## Purpose
 
-### Prerequisites
+The application addresses two distinct use cases through its dual-mode operation:
 
-- Node.js 18+ installed
-- OpenRouter API key ([Get one here](https://openrouter.ai/))
+**Fast Mode** generates concise, direct prompts optimized for quick interactions. The system constrains output to under 500 characters while maintaining professional tone and clarity. This mode suits users who need straightforward, actionable prompts without extensive detail.
 
-### Installation
+**Advanced Mode** produces comprehensive, structured prompts designed for complex tasks requiring detailed specifications. Output ranges from 500 to 1000 characters and follows a bullet-point format with clear sections: introduction, body with key details, and conclusion. This mode targets professional workflows where precision and completeness are critical.
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd prompt-generator
-```
+## Technical Architecture
 
-2. Install dependencies:
-```bash
-npm install
-```
+### Frontend Layer
 
-3. Create a `.env` file in the root directory:
-```bash
-cp .env.example .env
-```
+Built with React and Vite, the application provides a single-page interface optimized for prompt generation workflows. The component architecture separates concerns:
 
-4. Add your OpenRouter API key to `.env`:
-```
-VITE_OPENROUTER_API_KEY=your_actual_api_key_here
-```
+- **Header**: Branding and navigation
+- **ModeSelector**: Toggle between Fast and Advanced generation modes
+- **PromptInput**: Text input with character counting and validation
+- **OutputDisplay**: Results presentation with clipboard integration
+- **ErrorNotification**: User feedback for API failures and validation errors
 
-### Development
+The design system implements a dark theme with glassmorphism effects, utilizing CSS custom properties for consistent styling. All animations use CSS transitions for performance.
 
-Run the development server:
-```bash
-npm run dev
-```
+### API Integration
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+The service layer interfaces with OpenRouter API, which provides access to the DeepSeek R1T2 Chimera model. The implementation includes:
 
-### Build for Production
+- Axios-based HTTP client with request interceptors
+- Environment-based API key management
+- Error handling with user-friendly message translation
+- Response validation and parsing
 
-```bash
-npm run build
-```
+Each generation mode uses distinct system prompts that instruct the AI model on output format, length constraints, and tone requirements.
 
-Preview the production build:
-```bash
-npm run preview
-```
+### Deployment Pipeline
 
-## 📦 Deployment to GitHub Pages
+GitHub Actions automates the build and deployment process. On commits to the main branch, the workflow:
 
-This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
+1. Checks out the repository
+2. Configures Node.js environment
+3. Installs dependencies
+4. Injects API key from repository secrets
+5. Builds production bundle with Vite
+6. Deploys static assets to GitHub Pages
 
-### Setup Steps:
+The workflow uses GitHub's built-in Pages deployment action, eliminating the need for external hosting infrastructure.
 
-1. **Create a GitHub Repository** and push your code
+## Key Features
 
-2. **Add Repository Secret**:
-   - Go to your repository Settings → Secrets and variables → Actions
-   - Click "New repository secret"
-   - Name: `VITE_OPENROUTER_API_KEY`
-   - Value: Your OpenRouter API key
+**Dual Generation Modes**: Users select between concise or detailed output based on their use case. Mode selection dynamically adjusts the system prompt sent to the API.
 
-3. **Enable GitHub Pages**:
-   - Go to Settings → Pages
-   - Source: Deploy from a branch
-   - Branch: `gh-pages` / root
-   - Save
+**Real-time Character Counting**: Both input and output display character counts, providing transparency about content length relative to mode constraints.
 
-4. **Push to Main Branch**:
-   - The workflow will automatically build and deploy
-   - Your site will be available at: `https://<username>.github.io/<repository-name>/`
+**Clipboard Integration**: Single-click copying of generated prompts enables seamless workflow integration with other AI tools.
 
-## 🛠️ Tech Stack
+**Keyboard Shortcuts**: Ctrl+Enter triggers generation, reducing interaction friction for power users.
 
-- **React** - UI framework
-- **Vite** - Build tool
-- **Axios** - HTTP client
-- **OpenRouter API** - AI model access
-- **CSS3** - Styling with custom properties
+**Error Handling**: The application degrades gracefully when API calls fail, displaying actionable error messages and suggestions for resolution.
 
-## 🎨 Design Features
+**Responsive Design**: The interface adapts to different screen sizes using CSS media queries and flexible layouts.
 
-- Dark theme with deep purple and pink gradients
-- Glassmorphism effects with backdrop blur
-- Smooth animations and transitions
-- Modern typography (Outfit font)
-- Responsive layout
+## Technology Stack
 
-## 📝 Usage
+- React 18 for component-based UI development
+- Vite 5 for fast builds and hot module replacement
+- Axios for HTTP client functionality
+- OpenRouter API for AI model access
+- CSS3 with custom properties for theming
+- GitHub Actions for CI/CD automation
+- GitHub Pages for static site hosting
 
-1. Select your desired mode (Fast or Advanced)
-2. Enter your idea or concept in the input field
-3. Click "Generate Optimized Prompt" or press `Ctrl+Enter`
-4. Copy the generated prompt to use with any AI model
+## Configuration
 
-## 🔑 Environment Variables
+The application requires a single environment variable:
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_OPENROUTER_API_KEY` | Your OpenRouter API key | Yes |
+`VITE_OPENROUTER_API_KEY`: Authentication token for OpenRouter API access. This must be configured both locally for development and as a GitHub repository secret for production deployment.
 
-## 📄 License
+## Design Philosophy
 
-MIT License - feel free to use this project for personal or commercial purposes.
+The visual design prioritizes clarity and focus while maintaining aesthetic appeal. The dark color scheme reduces eye strain during extended use. Glassmorphism effects provide visual hierarchy without overwhelming the interface. Animations enhance perceived performance and guide user attention to state changes.
 
-## 🤝 Contributing
+Typography uses the Outfit font family for modern, readable text rendering. The layout centers content within a maximum width container, optimizing for readability on large displays while remaining functional on mobile devices.
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+## License
 
----
-
-Made with ❤️ using OpenRouter AI
+Released under MIT License.
