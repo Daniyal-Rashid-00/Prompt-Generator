@@ -84,7 +84,7 @@ export async function generateCompletion(systemPrompt, userPrompt) {
  * @returns {Promise<string>} - The optimized prompt
  */
 export async function generateFastPrompt(userInput) {
-    const systemPrompt = `As an expert in prompt engineering, please craft a concise, professional prompt that instructs an AI model to transform any input text into a clear, single-paragraph, straightforward, and highly accurate prompt for expert-level use, adhering strictly to the guidelines: under 500 characters, no explanations or conversations, and written in a direct, professional tone.`;
+    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a clear, concise, and professional AI prompt. The output should be under 500 characters, written in a direct professional tone, and ready to use immediately with any AI model. Do not include any explanations or meta-commentary - just output the optimized prompt itself.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }
@@ -95,7 +95,12 @@ export async function generateFastPrompt(userInput) {
  * @returns {Promise<string>} - The optimized prompt with structured format
  */
 export async function generateAdvancedPrompt(userInput) {
-    const systemPrompt = `You are an AI language model tasked with transforming input text into a professional prompt aimed at obtaining the most accurate and high-quality results from AI models. Please address a seasoned expert in the relevant domain with a professional and detailed tone. Structure the output in plain English text using a bullet-point format, including: - A prompt introduction addressing the expert professionally. - A prompt body containing all key details in structured bullet points. - A prompt conclusion emphasizing the expert's role and how their experience should be applied. Ensure the final output is between 500 and 1000 characters, contains no bold formatting, and provides only the professional prompt without any additional responses or conversations.`;
+    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a comprehensive, professional AI prompt between 500-1000 characters. Structure it with:
+- A professional introduction addressing an expert
+- Bullet points with key requirements and details
+- A conclusion emphasizing expertise application
+
+Output only the final optimized prompt without any explanations or meta-commentary. The prompt should be ready to paste directly into any AI model.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }

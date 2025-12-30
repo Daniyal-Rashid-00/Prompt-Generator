@@ -1,5 +1,5 @@
 .header {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-md) 0;
     background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -18,24 +18,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-sm);
+    margin-bottom: 4px;
 }
 
 .logo-icon {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     animation: pulse 3s ease-in-out infinite;
 }
 
 .logo-text {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     font-weight: 800;
     color: var(--color-text-primary);
     margin: 0;
 }
 
 .tagline {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     margin: 0;
     font-weight: 400;
@@ -43,22 +43,22 @@
 
 @media (max-width: 768px) {
     .header {
-        padding: var(--spacing-lg) 0;
+        padding: var(--spacing-sm) 0;
     }
 
     .logo-section {
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
     .logo-icon {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
     }
 
     .logo-text {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
     }
 
     .tagline {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-xs);
     }
 }
