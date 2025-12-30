@@ -36,6 +36,9 @@ jobs:
           VITE_OPENROUTER_API_KEY: ${{ secrets.VITE_OPENROUTER_API_KEY }}
         run: npm run build
       
+      - name: Add .nojekyll file
+        run: touch ./dist/.nojekyll
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
