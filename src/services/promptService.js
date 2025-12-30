@@ -84,16 +84,7 @@ export async function generateCompletion(systemPrompt, userPrompt) {
  * @returns {Promise<string>} - The optimized prompt
  */
 export async function generateFastPrompt(userInput) {
-    const systemPrompt = `You are an expert prompt engineer. Your task is to transform the user's input into a high-quality AI prompt.
-    
-CRITICAL REQUIREMENT: The generated prompt MUST start with a clear persona definition, such as "As an expert in [field]..." or "Act as a seasoned [role]...".
-
-The output must be:
-1. Concise (under 500 characters).
-2. Written in a direct, professional tone.
-3. Ready to paste directly into an AI model.
-
-Do not include any explanations, meta-commentary, or conversational filler. Just output the optimized prompt itself.`;
+    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a clear, concise, and professional AI prompt. The output should be under 500 characters, written in a direct professional tone, and ready to use immediately with any AI model. Do not include any explanations or meta-commentary - just output the optimized prompt itself.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }
@@ -104,16 +95,12 @@ Do not include any explanations, meta-commentary, or conversational filler. Just
  * @returns {Promise<string>} - The optimized prompt with structured format
  */
 export async function generateAdvancedPrompt(userInput) {
-    const systemPrompt = `You are an expert prompt engineer. Your task is to transform the user's input into a comprehensive, advanced AI prompt (500-1000 characters).
+    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a comprehensive, professional AI prompt between 500-1000 characters. Structure it with:
+- A professional introduction addressing an expert
+- Bullet points with key requirements and details
+- A conclusion emphasizing expertise application
 
-CRITICAL REQUIREMENT: The generated prompt MUST start by establishing a sophisticated persona, such as "Act as a world-class expert in [field]..." or "You are a senior [role]...".
-
-The output must be structured as follows:
-- **Introduction**: Define the persona and the high-level objective.
-- **Key Requirements**: Use bullet points to detail specific constraints, formats, or necessary inclusions.
-- **Conclusion**: A brief closing statement emphasizing the quality or specific outcome expected.
-
-Do not include any explanations or meta-commentary. Output ONLY the final optimized prompt.`;
+Output only the final optimized prompt without any explanations or meta-commentary. The prompt should be ready to paste directly into any AI model.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }
