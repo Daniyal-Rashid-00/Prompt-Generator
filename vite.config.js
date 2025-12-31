@@ -7,7 +7,6 @@ export default defineConfig({
     base: '/Prompt-Generator/',
     build: {
         outDir: 'dist',
-        assetsDir: 'assets',
         sourcemap: false,
     },
 })
