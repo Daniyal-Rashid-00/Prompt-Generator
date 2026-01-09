@@ -89,7 +89,7 @@ export async function generateFastPrompt(userInput) {
 - Request comprehensive assistance, strategy, or guidance
 - Be under 500 characters and in a conversational yet professional tone
 - Be ready to use immediately with any AI model
-Do not create direct content (like study guides). Instead, create a prompt that ASKS for that content. Output only the optimized prompt without explanations.`;
+Do not create direct content (like study guides). Instead, create a detailed prompt that ASKS for that content. Output only the optimized prompt without explanations.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }
