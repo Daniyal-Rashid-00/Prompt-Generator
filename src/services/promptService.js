@@ -84,7 +84,12 @@ export async function generateCompletion(systemPrompt, userPrompt) {
  * @returns {Promise<string>} - The optimized prompt
  */
 export async function generateFastPrompt(userInput) {
-    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a clear, concise, and professional AI prompt. The output should be under 500 characters, written in a direct professional tone, and ready to use immediately with any AI model. Do not include any explanations or meta-commentary - just output the optimized prompt itself.`;
+    const systemPrompt = `You are an expert prompt engineer. Transform the user's idea into a clear, professional AI prompt that asks for help from an expert specialist. The prompt should:
+- Start with "As an experienced [relevant field] specialist, please provide..."
+- Request comprehensive assistance, strategy, or guidance
+- Be under 500 characters and in a conversational yet professional tone
+- Be ready to use immediately with any AI model
+Do not create direct content (like study guides). Instead, create a detailed prompt that ASKS for that content. Output only the optimized prompt without explanations.`;
 
     return await generateCompletion(systemPrompt, userInput);
 }

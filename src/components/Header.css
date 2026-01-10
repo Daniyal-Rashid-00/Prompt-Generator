@@ -25,6 +25,11 @@
 .logo-icon {
     font-size: var(--font-size-2xl);
     animation: pulse 3s ease-in-out infinite;
+    transition: transform var(--transition-smooth);
+}
+
+.logo-icon:hover {
+    transform: scale(1.2) rotate(15deg);
 }
 
 .logo-text {
@@ -39,6 +44,13 @@
     color: var(--color-text-muted);
     margin: 0;
     font-weight: 400;
+}
+
+/* Tablet responsive */
+@media (max-width: 1024px) {
+    .logo-text {
+        font-size: var(--font-size-xl);
+    }
 }
 
 @media (max-width: 768px) {
@@ -60,5 +72,20 @@
 
     .tagline {
         font-size: var(--font-size-xs);
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .header {
+        padding: var(--spacing-xs) 0;
+    }
+
+    .logo-icon {
+        font-size: var(--font-size-lg);
+    }
+
+    .logo-text {
+        font-size: var(--font-size-lg);
     }
 }
