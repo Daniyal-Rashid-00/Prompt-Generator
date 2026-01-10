@@ -70,10 +70,14 @@
     min-width: 280px;
     position: relative;
     transition: all var(--transition-smooth);
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
 .generate-button:hover:not(:disabled) {
-    transform: translateY(-3px) scale(1.03);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .generate-button:active:not(:disabled) {
