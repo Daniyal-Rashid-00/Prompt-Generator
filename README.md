@@ -2,6 +2,8 @@
 
 ## Overview
 
+**Live Demo:** [https://daniyal-rashid-00.github.io/Prompt-Generator/](https://daniyal-rashid-00.github.io/Prompt-Generator/)
+
 This web application serves as an intelligent intermediary between users and large language models. It takes rough ideas or simple descriptions and transforms them into highly effective, professionally structured prompts that maximize the quality and accuracy of AI model outputs.
 
 The core problem this solves is the prompt engineering barrier. Most users struggle to articulate their needs in a way that elicits optimal responses from AI models. This tool automates the prompt engineering process, applying best practices to convert casual input into expert-level prompts.
