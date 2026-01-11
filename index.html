@@ -85,25 +85,29 @@
     </div>
   </div>
   <script>
-    window.onerror = function (msg, url, line, col, error) {
+    // Capture phase listener to catch resource loading errors (404s)
+    window.addEventListener('error', function (e) {
       const errorDiv = document.getElementById('global-error');
       if (errorDiv) {
         errorDiv.style.display = 'block';
-        errorDiv.innerHTML = `<strong>Global Error:</strong> ${msg}<br><small>${url}:${line}:${col}</small><br><br>Stack: ${error ? error.stack : 'N/A'}`;
+        const target = e.target;
+        // Check if it's a resource loading error
+        if (target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK' || target.tagName === 'IMG')) {
+          errorDiv.innerHTML += `<br><strong>Resource Error:</strong> Failed to load ${target.src || target.href}`;
+        } else {
+          errorDiv.innerHTML += `<br><strong>Runtime Error:</strong> ${e.message}`;
+        }
       }
-      // Also alert to be sure
-      // alert('Error: ' + msg); 
-      return false;
-    };
+    }, true); // true = capture phase
 
     // Catch unhandled promise rejections
-    window.onunhandledrejection = function (event) {
+    window.addEventListener('unhandledrejection', function (event) {
       const errorDiv = document.getElementById('global-error');
       if (errorDiv) {
         errorDiv.style.display = 'block';
-        errorDiv.innerHTML += `<br><br><strong>Unhandled Promise:</strong> ${event.reason}`;
+        errorDiv.innerHTML += `<br><strong>Unhandled Promise:</strong> ${event.reason}`;
       }
-    };
+    });
   </script>
   <script type="module" src="src/main.jsx"></script>
 </body>
