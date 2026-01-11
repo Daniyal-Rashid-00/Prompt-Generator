@@ -75,7 +75,40 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div
+      style="display: flex; justify-content: center; align-items: center; height: 100vh; color: white; background-color: #0f172a; font-family: sans-serif; flex-direction: column; gap: 20px;">
+      <h1>Loading...</h1>
+      <div id="global-error"
+        style="color: #ef4444; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 8px; max-width: 80%; display: none; text-align: left; white-space: pre-wrap;">
+      </div>
+    </div>
+  </div>
+  <script>
+    // Capture phase listener to catch resource loading errors (404s)
+    window.addEventListener('error', function (e) {
+      const errorDiv = document.getElementById('global-error');
+      if (errorDiv) {
+        errorDiv.style.display = 'block';
+        const target = e.target;
+        // Check if it's a resource loading error
+        if (target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK' || target.tagName === 'IMG')) {
+          errorDiv.innerHTML += `<br><strong>Resource Error:</strong> Failed to load ${target.src || target.href}`;
+        } else {
+          errorDiv.innerHTML += `<br><strong>Runtime Error:</strong> ${e.message}`;
+        }
+      }
+    }, true); // true = capture phase
+
+    // Catch unhandled promise rejections
+    window.addEventListener('unhandledrejection', function (event) {
+      const errorDiv = document.getElementById('global-error');
+      if (errorDiv) {
+        errorDiv.style.display = 'block';
+        errorDiv.innerHTML += `<br><strong>Unhandled Promise:</strong> ${event.reason}`;
+      }
+    });
+  </script>
   <script type="module" src="src/main.jsx"></script>
 </body>
 
