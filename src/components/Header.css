@@ -1,5 +1,5 @@
 .header {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-lg) 0;
     background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
