@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
-const MODEL = 'tngtech/deepseek-r1t2-chimera:free';
+const MODEL = 'deepseek/deepseek-r1-0528:free';
 
 /**
  * Create axios instance for OpenRouter API
